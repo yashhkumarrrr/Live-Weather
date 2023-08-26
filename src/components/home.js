@@ -1,7 +1,9 @@
 import './home.css';
+import Intl from "intl";
 import axios from "axios";
 import moment from 'moment';
 import Fab from '@mui/material/Fab';
+import "intl/locale-data/jsonp/en-IN";
 import Paper from '@mui/material/Paper';
 import { Link } from 'react-router-dom';
 import MuiAlert from '@mui/material/Alert';
@@ -11,9 +13,6 @@ import IconButton from '@mui/material/IconButton';
 import SearchIcon from '@mui/icons-material/Search';
 import { useState, useEffect, useRef, forwardRef } from "react";
 import LocationSearchingIcon from '@mui/icons-material/LocationSearching';
-
-import Intl from "intl";
-import "intl/locale-data/jsonp/en-IN";
 
 const Alert = forwardRef(function Alert(props, ref) {
     return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
@@ -202,6 +201,7 @@ const Home = () => {
                             />
                             <IconButton
                                 type="button"
+                                aria-label="Search"
                                 onClick={manualLocationWeather}
                             >
                                 <SearchIcon />
@@ -297,10 +297,10 @@ const Home = () => {
                 <div className='home-location-btn'>
                     <Fab
                         color="secondary"
+                        aria-label="Search"
                         onClick={currentLocationWeather}
                     >
-                        <LocationSearchingIcon
-                        />
+                        <LocationSearchingIcon />
                     </Fab>
                 </div>
 
@@ -317,7 +317,7 @@ const Home = () => {
 
                 <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
                     <Alert onClose={handleClose} severity="error" sx={{ width: '100%' }}>
-                        Unable to Process
+                        Unable to Process!
                     </Alert>
                 </Snackbar>
             </div >
