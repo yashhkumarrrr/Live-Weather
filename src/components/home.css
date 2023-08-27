@@ -13,6 +13,7 @@
     flex-direction: column;
 }
 
+
 .home-search {
     padding: 10px;
     display: flex;
@@ -37,39 +38,33 @@
     font-weight: 300;
     font-size: 1.3rem;
     letter-spacing: 3px;
-}
-
-.home-section-3 {
-    font-weight: 300;
-    font-size: 1.3rem;
-    letter-spacing: 3px;
     margin-bottom: 10px;
 }
 
-.home-section-4 {
+.home-section-3 {
     width: 100vw;
     display: flex;
     max-width: 600px;
     justify-content: space-around;
 }
 
-.home-section-4-main {
+.home-section-3-main {
     display: flex;
     align-items: center;
     flex-direction: column;
 }
 
-.home-section-4-main-head {
+.home-section-3-main-head {
     flex: 1;
     display: flex;
 }
 
-.home-section-4-main-temp {
+.home-section-3-main-temp {
     font-size: 10rem;
     font-weight: 200;
 }
 
-.home-section-4-main-cel {
+.home-section-3-main-cel {
     margin-top: 25px;
     font-size: 1.3rem;
 }
@@ -78,7 +73,7 @@
     height: 15rem;
 }
 
-.home-section-4-main-foot {
+.home-section-3-main-foot {
     font-size: 1.2rem;
 }
 
@@ -93,16 +88,16 @@
         letter-spacing: 2px;
     }
     
-    .home-section-3 {
+    .home-section-2 {
         font-size: 1.2em;
         letter-spacing: 2px;
     }
     
-    .home-section-4-main-temp {
+    .home-section-3-main-temp {
         font-size: 8rem;
     }
     
-    .home-section-4-main-cel {
+    .home-section-3-main-cel {
         margin-top: 30px;
         font-size: 1.2rem;
     }
@@ -111,7 +106,7 @@
         height: 12rem;
     }
     
-    .home-section-4-main-foot {
+    .home-section-3-main-foot {
         font-size: 1.1rem;
         font-weight: 300;
     }
@@ -127,16 +122,16 @@
         letter-spacing: 1px;
     }
     
-    .home-section-3 {
+    .home-section-2 {
         font-size: 1.1rem;
         letter-spacing: 1px;
     }
     
-    .home-section-4-main-temp {
+    .home-section-3-main-temp {
         font-size: 5.5rem;
     }
     
-    .home-section-4-main-cel {
+    .home-section-3-main-cel {
         margin-top: 25px;
         font-size: 1.1rem;
     }
@@ -145,7 +140,7 @@
         height: 8rem;
     }
     
-    .home-section-4-main-foot {
+    .home-section-3-main-foot {
         font-size: 1rem;
         font-weight: 300;
     }

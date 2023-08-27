@@ -1,9 +1,7 @@
 import './home.css';
-import Intl from "intl";
 import axios from "axios";
 import moment from 'moment';
 import Fab from '@mui/material/Fab';
-import "intl/locale-data/jsonp/en-IN";
 import Paper from '@mui/material/Paper';
 import { Link } from 'react-router-dom';
 import MuiAlert from '@mui/material/Alert';
@@ -49,15 +47,6 @@ const Home = () => {
     const [parameter, setParameter] = useState('');
     const [cloudiness, setCloudiness] = useState('');
     const [visibility, setVisibility] = useState('');
-    const [currDate, setCurrDate] = useState(new Date());
-    const [current_time, setCurrentTime] = useState(moment());
-
-    const currentDate = Intl.DateTimeFormat("en-IN", {
-        day: "numeric",
-        month: "long",
-    }).format(currDate);
-
-    const currentTime = current_time.format("hh:mm a");
 
     const changeSearch = (value) => {
         setSearch(value);
@@ -164,29 +153,29 @@ const Home = () => {
 
     if ((parameter === 'Dust') || (parameter === 'Sand') || (parameter === 'Ash') || (parameter === 'Clear')) {
         var weatherIcon = require('./images/sunny.webp');
-        var background = 'rgba(255, 190, 70, 0.5)';
+        var background = '#d4d42f, #e65f5f';
     }
     else if ((parameter === 'Rain') || (parameter === 'Drizzle')) {
         weatherIcon = require('./images/rain.webp');
-        background = 'rgba(117, 117, 255, 0.5)';
+        background = '#b3cde4, #1d3f58';
     }
     else if (parameter === 'Thunderstorm') {
         weatherIcon = require('./images/thunder.webp');
-        background = 'rgba(60, 0, 60, 0.5)';
+        background = 'lightblue, darkblue';
     }
     else if (parameter === 'Snow') {
         weatherIcon = require('./images/snow.webp');
-        background = 'rgba(210, 210, 255, 0.5)';
+        background = 'white, blue';
     }
     else {
         weatherIcon = require('./images/haze.webp');
-        background = 'rgba(170, 170, 170, 0.5)';
+        background = 'white, gray';
     }
 
     return (
         <>
             <div className='home-body'>
-                <div className='home-1' style={{ backgroundColor: `${background}` }} >
+                <div className='home-1' style={{ backgroundImage: `linear-gradient(${background})` }} >
                     <div className='home-search'>
                         <Paper
                             sx={{ p: '2px 4px', display: 'flex', width: '100%', maxWidth: 600, backgroundColor: '#e6e6e6' }}
@@ -215,27 +204,23 @@ const Home = () => {
                         </div>
 
                         <div className='home-section-2'>
-                            {currentDate}, {currentTime}
-                        </div>
-
-                        <div className='home-section-3'>
                             Day {Math.round(maxTemp)}&deg; &uarr; - Night {Math.round(minTemp)}&deg; &darr;
                         </div>
 
-                        <div className='home-section-4'>
-                            <div className='home-section-4-main'>
-                                <div className='home-section-4-main-head'>
-                                    <div className='home-section-4-main-temp'>{Math.round(temp)}</div>
-                                    <div className='home-section-4-main-cel'>&deg;C</div>
+                        <div className='home-section-3'>
+                            <div className='home-section-3-main'>
+                                <div className='home-section-3-main-head'>
+                                    <div className='home-section-3-main-temp'>{Math.round(temp)}</div>
+                                    <div className='home-section-3-main-cel'>&deg;C</div>
                                 </div>
 
-                                <div className='home-section-4-main-foot'>
+                                <div className='home-section-3-main-foot'>
                                     Feels like {Math.round(feelsLike)}&deg;
                                 </div>
                             </div>
 
-                            <div className='home-section-4-main'>
-                                <div className='home-section-4-main-head'>
+                            <div className='home-section-3-main'>
+                                <div className='home-section-3-main-head'>
                                     <img
                                         alt=''
                                         src={weatherIcon}
@@ -243,7 +228,7 @@ const Home = () => {
                                     />
                                 </div>
 
-                                <div className='home-section-4-main-foot'>
+                                <div className='home-section-3-main-foot'>
                                     {parameter}
                                 </div>
                             </div>
