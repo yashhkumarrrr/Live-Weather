@@ -168,7 +168,7 @@ const Home = () => {
         background = 'white, blue';
     }
     else {
-        weatherIcon = require('./images/haze.webp');
+        weatherIcon = require('./images/haze.gif');
         background = 'white, gray';
     }
 
