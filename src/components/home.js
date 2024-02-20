@@ -32,7 +32,7 @@ const validationSchema = yup.object({
         .required("Can't be empty"),
 });
 
-const Home = (props) => {
+const Home = () => {
 
     const inputRef = useRef()
     const appName = 'Live Weather'
@@ -257,48 +257,65 @@ const Home = (props) => {
     return (
         <>
             <div className='body'>
-                <div className='home-1' style={{ backgroundImage: `linear-gradient(${background})` }} >
-                    <div className='home-search'>
-                        <form onSubmit={handleSubmit} className='home-search-bar'>
-                            <input
-                                type='text'
-                                value={search}
-                                className='home-search-bar-input'
-                                placeholder='Enter City Name'
-                                onChange={(event) => setSearch(event.target.value)}
-                                ref={inputRef}
-                            />
 
-                            <button
+                {/* Body */}
+
+                <div className='home-1' style={{ backgroundImage: `linear-gradient(${background})` }} >
+                    <div className='home-1-search'>
+                        <form onSubmit={handleSubmit} className='home-1-search-bar'>
+                            <IconButton
                                 type="submit"
                                 aria-label='Search City'
                                 onClick={manualLocationWeather}
-                                className='home-search-bar-button'
                             >
-                                <SearchIcon sx={{ fontSize: 28 }} />
-                            </button>
+                                <ThemeProvider theme={theme}>
+                                    <Tooltip TransitionComponent={Zoom} title="Search City" disableInteractive>
+                                        <SearchIcon sx={{ fontSize: 28 }} />
+                                    </Tooltip>
+                                </ThemeProvider>
+                            </IconButton>
+
+                            <input
+                                type='text'
+                                value={search}
+                                ref={inputRef}
+                                className='home-1-search-bar-input'
+                                placeholder='Enter City Name'
+                                onChange={(event) => setSearch(event.target.value)}
+                            />
+
+                            <IconButton
+                                onClick={currentLocationWeather}
+                                aria-label='Live Location Weather'
+                            >
+                                <ThemeProvider theme={theme}>
+                                    <Tooltip TransitionComponent={Zoom} title="Use Live Location" disableInteractive>
+                                        <LocationSearchingIcon sx={{ fontSize: 28 }} />
+                                    </Tooltip>
+                                </ThemeProvider>
+                            </IconButton>
                         </form>
                     </div>
 
-                    <div className='home-section'>
-                        <div className='home-section-1'>
+                    <div className='home-1-body'>
+                        <div className='home-1-body-1'>
                             {city}, {country}
                         </div>
 
-                        <div className='home-section-2'>
-                            <div className='home-section-2-main'>
-                                <div className='home-section-2-main-head'>
-                                    <div className='home-section-2-main-temp'>{Math.round(temp)}</div>
-                                    <div className='home-section-2-main-cel'>&deg;C</div>
+                        <div className='home-1-body-2'>
+                            <div className='home-1-body-2-main'>
+                                <div className='home-1-body-2-main-head'>
+                                    <div className='home-1-body-2-main-temp'>{Math.round(temp)}</div>
+                                    <div className='home-1-body-2-main-cel'>&deg;C</div>
                                 </div>
 
-                                <div className='home-section-2-main-foot'>
+                                <div className='home-1-body-2-main-foot'>
                                     Feels like {Math.round(feelsLike)}&deg;
                                 </div>
                             </div>
 
-                            <div className='home-section-2-main'>
-                                <div className='home-section-2-main-head'>
+                            <div className='home-1-body-2-main'>
+                                <div className='home-1-body-2-main-head'>
                                     <img
                                         alt=''
                                         src={weatherIcon}
@@ -306,7 +323,7 @@ const Home = (props) => {
                                     />
                                 </div>
 
-                                <div className='home-section-2-main-foot'>
+                                <div className='home-1-body-2-main-foot'>
                                     {parameter}
                                 </div>
                             </div>
@@ -338,6 +355,12 @@ const Home = (props) => {
                             <div>{visibility} Km</div>
                         </div>
                     </div>
+
+                    <div className='home-2-bottom'>
+                        <Link to='https://openweathermap.org/' target='_blank' className='home-2-bottom-link'>
+                            openweathermap.org
+                        </Link>
+                    </div>
                 </div>
 
                 {/* Sunrise and Sunset */}
@@ -358,20 +381,28 @@ const Home = (props) => {
                             <div>{sunset}</div>
                         </div>
                     </div>
+
+                    <div className='home-3-content-bottom'>
+                        * Indian Standard Time (IST)
+                    </div>
                 </div>
 
-                {/* Floating Buttons */}
+                {/* Feedback Drawer */}
 
-                <div className='home-feedback-btn-div'>
+                <div>
                     <React.Fragment>
-                        <div>
+                        <div className='feedback-drawer-btn'>
                             <ThemeProvider theme={theme}>
-                                <Tooltip TransitionComponent={Zoom} title="Provide Feedback" disableInteractive>
-                                    <ErrorOutlineOutlinedIcon
-                                        sx={{ fontSize: 25 }}
-                                        className='home-feedback-btn'
+                                <Tooltip TransitionComponent={Zoom} title="Provide Feedback" placement="left" disableInteractive>
+                                    <IconButton
+                                        aria-label='Provide Feedback'
                                         onClick={toggleDrawer('right', true)}
-                                    />
+                                    >
+                                        <ErrorOutlineOutlinedIcon
+                                            sx={{ fontSize: 35 }}
+                                            className='feedback-icons'
+                                        />
+                                    </IconButton>
                                 </Tooltip>
                             </ThemeProvider>
                         </div>
@@ -384,8 +415,8 @@ const Home = (props) => {
                                     onClose={toggleDrawer(anchor, false)}
                                 >
                                     <Box
-                                        sx={{ display: `${drawerFeedback}`, flexDirection: 'column' }}
                                         className='feedback-box'
+                                        sx={{ display: `${drawerFeedback}`, flexDirection: 'column' }}
                                     >
                                         <div className='feedback-head'>
                                             <div>
@@ -405,7 +436,7 @@ const Home = (props) => {
 
                                         <div className='feedback-body'>
                                             <div className='feedback-img'>
-                                                <img src={report} alt='Report' height='200px' />
+                                                <img src={report} alt='Report' height='180px' />
                                             </div>
 
                                             <div
@@ -449,8 +480,8 @@ const Home = (props) => {
                                     </Box>
 
                                     <Box
-                                        sx={{ display: `${drawerReport}`, flexDirection: 'column' }}
                                         className='feedback-box'
+                                        sx={{ display: `${drawerReport}`, flexDirection: 'column' }}
                                     >
                                         <div className='feedback-head'>
                                             <div>
@@ -494,10 +525,10 @@ const Home = (props) => {
                                                             name='feedback'
                                                             autoComplete='off'
                                                             onBlur={formik.handleBlur}
+                                                            className='feedback-textarea'
                                                             value={formik.values.feedback}
                                                             onChange={formik.handleChange}
                                                             placeholder='Type your Message'
-                                                            className='feedback-textarea'
                                                         />
                                                         {formik.touched.feedback &&
                                                             <div className='feebdback-form-error'>{formik.errors.feedback}</div>
@@ -605,20 +636,6 @@ const Home = (props) => {
                             </React.Fragment>
                         ))}
                     </React.Fragment>
-                </div>
-
-                <div className='home-location-btn-div'>
-                    <div>
-                        <ThemeProvider theme={theme}>
-                            <Tooltip TransitionComponent={Zoom} title="Use Current Location" disableInteractive>
-                                <LocationSearchingIcon
-                                    sx={{ fontSize: 30 }}
-                                    className='home-location-btn'
-                                    onClick={currentLocationWeather}
-                                />
-                            </Tooltip>
-                        </ThemeProvider>
-                    </div>
                 </div>
 
                 {/* Footer */}
