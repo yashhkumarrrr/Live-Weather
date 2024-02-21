@@ -297,11 +297,11 @@
     bottom: 15px;
     position: fixed;
     border-radius: 50px;
-    background-color: #969696;
+    background-color: #b4b4b4d9;
 }
 
-.feedback-icons {
-    color: #232323;
+#feedback-icons {
+    padding: 6px;
 }
 
 .feedback-box {

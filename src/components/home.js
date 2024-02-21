@@ -38,8 +38,8 @@ const Home = () => {
     const appName = 'Live Weather'
     const report = require('./files/report.webp')
 
-    const [state, setState] = useState({ right: false })
     const [feedbackType, setFeedbackType] = useState('')
+    const [state, setState] = useState({ right: false })
     const [drawerReport, setDrawerReport] = useState('none')
     const [drawerSuggest, setDrawerSuggest] = useState('none')
     const [snackbarContent, setSnackbarContent] = useState('')
@@ -395,12 +395,12 @@ const Home = () => {
                             <ThemeProvider theme={theme}>
                                 <Tooltip TransitionComponent={Zoom} title="Provide Feedback" placement="left" disableInteractive>
                                     <IconButton
+                                        id='feedback-icons'
                                         aria-label='Provide Feedback'
                                         onClick={toggleDrawer('right', true)}
                                     >
                                         <ErrorOutlineOutlinedIcon
-                                            sx={{ fontSize: 35 }}
-                                            className='feedback-icons'
+                                            sx={{ fontSize: 30 }}
                                         />
                                     </IconButton>
                                 </Tooltip>
@@ -602,10 +602,10 @@ const Home = () => {
                                                             name='feedback'
                                                             autoComplete='off'
                                                             onBlur={formik.handleBlur}
+                                                            className='feedback-textarea'
                                                             value={formik.values.feedback}
                                                             onChange={formik.handleChange}
                                                             placeholder='Type your Message'
-                                                            className='feedback-textarea'
                                                         />
                                                         {formik.touched.feedback &&
                                                             <div className='feebdback-form-error'>{formik.errors.feedback}</div>
